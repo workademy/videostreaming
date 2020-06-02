@@ -27,11 +27,17 @@
       },
       readMessage (data) {
         let msg = data.message ? JSON.parse(data.message) : ''
+        if (!msg) {
+          return
+        }
         let sender = data.sender
+        if (msg && msg.sdp) {
+          console.log(msg.sdp.type)
+        }
         if (sender === this.id) {
           return
         }
-        if (msg.ice !== undefined) {
+        if (msg.ice) {
           this.pc.addIceCandidate(new RTCIceCandidate(msg.ice))
         } else if (msg.sdp && msg.sdp.type === 'offer') {
           this.pc.setRemoteDescription(new RTCSessionDescription(msg.sdp))
