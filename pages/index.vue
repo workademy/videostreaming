@@ -86,5 +86,8 @@
     margin: 10px 0px 0px 10px;
     width: 320px;
     height: 240px;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
   }
 </style>
